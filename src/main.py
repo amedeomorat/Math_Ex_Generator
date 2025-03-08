@@ -2,7 +2,9 @@
 import argparse
 from random import randint
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 STUDENT_ID = os.getenv("STUDENT_ID")
 
 def main():
