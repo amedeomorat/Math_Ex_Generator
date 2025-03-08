@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import argparse
 from random import randint
+import os
 
-STUDENT_ID = 2359267
+STUDENT_ID = os.getenv("STUDENT_ID")
 
 def main():
     parser = argparse.ArgumentParser(description="Generate a series of mathematical expressions.")
