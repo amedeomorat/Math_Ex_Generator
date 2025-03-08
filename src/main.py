@@ -12,7 +12,7 @@ def main():
     write_in_file(str(STUDENT_ID))
     for i in range(n):
         expression = generate_expression()
-        result = str(eval(expression))
+        result = str(round(eval(expression),2))
         final_string = expression + "=" + result
         write_in_file(final_string)
 
