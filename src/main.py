@@ -7,11 +7,23 @@ from dotenv import load_dotenv
 load_dotenv()
 STUDENT_ID = os.getenv("STUDENT_ID")
 
+FILE_PATH = "..\\result.txt"
+
+MAX_NUMBER = 100
+MIN_NUMBER = 0
+MIN_OPERAND = 3
+MAX_OPERAND = 5
+
 def main():
     parser = argparse.ArgumentParser(description="Generate a series of mathematical expressions.")
     parser.add_argument("n", help="number of mathematical expressions to write")
     args = parser.parse_args()
     n = int(args.n)
+    if not validate_n(n):
+        print("The number of expression must be at least 1.")
+        quit()
+    clear_file()
+        
     write_in_file(str(STUDENT_ID))
     for i in range(n):
         expression = generate_expression()
@@ -19,11 +31,17 @@ def main():
         final_string = expression + "=" + result
         write_in_file(final_string)
 
+def validate_n(n):
+    if n<=0:
+        return False
+    else:
+        return True
+
+def clear_file():
+    with open(FILE_PATH, "w") as file:
+        file.write("")
+
 def generate_expression():
-    MAX_NUMBER = 100
-    MIN_NUMBER = 0
-    MIN_OPERAND = 3
-    MAX_OPERAND = 5
     operations = ["+","-","*","/"]
     expression = str(randint(MIN_NUMBER, MAX_NUMBER))
     operands_number = randint(MIN_OPERAND, MAX_OPERAND)
@@ -37,7 +55,7 @@ def generate_expression():
     return expression
 
 def write_in_file(expression):
-    with open("..\\result.txt", "a" ) as file:
+    with open(FILE_PATH, "a" ) as file:
         file.write(expression + "\n")
 
 if __name__ == "__main__":
