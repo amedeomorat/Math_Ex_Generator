@@ -23,11 +23,10 @@ def main():
         print("The number of expression must be at least 1.")
         quit()
     clear_file()
-        
     write_in_file(str(STUDENT_ID))
     for i in range(n):
         expression = generate_expression()
-        result = str(round(eval(expression),2))
+        result = evaluate_expression(expression)
         final_string = expression + "=" + result
         write_in_file(final_string)
 
@@ -40,6 +39,10 @@ def validate_n(n):
 def clear_file():
     with open(FILE_PATH, "w") as file:
         file.write("")
+
+def evaluate_expression(expression):
+    result = str(round(eval(expression),2))
+    return result
 
 def generate_expression():
     operations = ["+","-","*","/"]
